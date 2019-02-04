@@ -61,7 +61,7 @@
     </style>
 <body>
     <div class="box">
-        <div class="bk">
+        <div class="bk" id="bk">
             原味🌸酱新年快乐！
         </div>
         <canvas id="canvas"></canvas>
@@ -69,6 +69,7 @@
     <!-- <div id="freshBtn">重置</div> -->
 </body>
 <script>
+bk.innerText = decodeURIComponent(location.hash.split('#')[1]) || '原味🌸酱新年快乐！';
 class canvasClass {
     constructor (id,text,cover,coverType,width,height,drawPercentCallback) {
         this.conId = id; /*canvasID */
@@ -126,11 +127,11 @@ class canvasClass {
         //         this.isMouseDown = false;
         //     })
         // } else {
-        //     document.addEventListener("touchmove", (e) => {
-        //         if (this.isMouseDown) {
-        //             e.preventDefault();
-        //         }
-        //     })
+            document.addEventListener("touchmove", (e) => {
+                if (this.isMouseDown) {
+                    e.preventDefault();
+                }
+            }, { passive: false })
         //     document.addEventListener("touchend", (e) => {
         //         this.isMouseDown = false;
         //     })
